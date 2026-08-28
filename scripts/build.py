@@ -115,7 +115,9 @@ def dump_sql(db_path) -> str:
     """
     con = sqlite3.connect(db_path)
     con.row_factory = sqlite3.Row
-    parts = [(SCHEMA / "db.sql").read_text(), "BEGIN TRANSACTION;"]
+    # No BEGIN TRANSACTION/COMMIT: D1 rejects explicit transaction statements
+    # in an import and batches the file itself.
+    parts = [(SCHEMA / "db.sql").read_text()]
     tables = [
         r[0]
         for r in con.execute(
@@ -136,7 +138,6 @@ def dump_sql(db_path) -> str:
     parts.append(
         "INSERT INTO rules_fts(rowid, title, text) SELECT rowid, title, text FROM rules;"
     )
-    parts.append("COMMIT;")
     con.close()
     return "\n".join(parts) + "\n"
 
@@ -169,7 +170,8 @@ def build_research_jsonl(counties: list[dict], sources: dict[str, dict], path):
     return len(lines)
 
 
-def build_court_data(counties: list[dict], version: str, manifest_url: str, path):
+def build_court_data(counties: list[dict], version: str, base_url: str,
+                     corpus_sha256: str, path):
     """Prose's court_data.rs Manifest, with per-county requirements filled in.
 
     The bundled courthouse/branch directory is preserved verbatim — it is
@@ -182,7 +184,11 @@ def build_court_data(counties: list[dict], version: str, manifest_url: str, path
               file=sys.stderr)
         base = {"counties": {}, "requirements": {}}
 
-    requirements = {"statewide": base.get("requirements", {}).get("statewide", [])}
+    # Start from what is already there and overwrite per county only where the
+    # pipeline actually produced entries. A rebuild before a county has been
+    # extracted must not delete hand-written requirements for it — that would
+    # silently make the app's checklist worse with every build.
+    requirements = dict(base.get("requirements", {}))
     for county in counties:
         rules = {r["id"]: r for r in county["rules"]}
         forms_by_rule: dict[str, set[str]] = {}
@@ -215,7 +221,17 @@ def build_court_data(counties: list[dict], version: str, manifest_url: str, path
             requirements[county["county"]] = entries
 
     base["version"] = version
-    base["manifest_url"] = manifest_url
+    # court_data::refresh() fetches this URL and parses the response *as a
+    # Manifest*, so it must point at the hosted copy of this very file — not at
+    # dist/manifest.json, which is the artifact index and a different shape.
+    base["manifest_url"] = f"{base_url}/court-data.json"
+    # What check_corpus_update() downloads. Without this the app never picks up
+    # a corpus revision between releases.
+    base["corpus"] = {
+        "version": version,
+        "sha256": corpus_sha256,
+        "url": f"{base_url}/research.jsonl",
+    }
     base["requirements"] = requirements
     write_json(path, base)
     return sum(len(v) for v in requirements.values())
@@ -240,9 +256,11 @@ def main(argv: list[str]) -> int:
     build_sqlite(counties, source_list, args.version, db_path)
     research_path = DIST / "research.jsonl"
     n_research = build_research_jsonl(counties, sources, research_path)
+    # court-data.json carries the corpus checksum, so research.jsonl is hashed first.
+    corpus_sha256 = sha256_bytes(research_path.read_bytes())
     court_path = DIST / "court-data.json"
-    manifest_url = f"{args.base_url}/manifest.json"
-    n_reqs = build_court_data(counties, args.version, manifest_url, court_path)
+    n_reqs = build_court_data(counties, args.version, args.base_url.rstrip("/"),
+                              corpus_sha256, court_path)
 
     # D1 imports SQL text, not a .sqlite file, so dump alongside the database.
     sql_path = DIST / "corpus.sql"

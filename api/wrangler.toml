@@ -7,7 +7,7 @@ compatibility_date = "2026-08-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "ca-family-law"
-database_id = "local-dev-placeholder"   # wrangler d1 create ca-family-law
+database_id = "3c27fc9e-93f8-4744-84ec-cf6774c287de"
 
 [observability]
 enabled = true

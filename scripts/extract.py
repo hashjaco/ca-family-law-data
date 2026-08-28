@@ -19,7 +19,11 @@ kind — a wrong deadline is a missed hearing for someone representing themselve
 Batch API by default: this is entirely non-latency-sensitive and batch is half
 price. Pass --sync to run inline when iterating on the prompt.
 
-    ANTHROPIC_API_KEY=... python scripts/extract.py contra-costa
+Credentials: `ANTHROPIC_API_KEY` if set (this is what CI uses), otherwise the
+macOS keychain — see `keychain_key()`. Nothing is read from a file in the repo,
+so there is no plaintext key to leak into a commit.
+
+    python scripts/extract.py contra-costa
     python scripts/extract.py --sync --limit 5 contra-costa   # prompt iteration
 """
 
@@ -28,6 +32,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import subprocess
 import sys
 import time
 
@@ -40,6 +45,46 @@ from common import DATA, read_json, topics as load_topics, write_json
 # worth more than the saving. Override with EXTRACT_MODEL if you disagree.
 MODEL = os.environ.get("EXTRACT_MODEL", "claude-sonnet-5")
 BATCH_POLL_S = 30
+
+KEYCHAIN_SERVICE = "ca-family-law-data"
+KEYCHAIN_ACCOUNT = "anthropic_api_key"
+
+
+def keychain_key() -> str | None:
+    """Read the API key from the macOS keychain.
+
+    Store it once, interactively (the flag prompts; the value never reaches your
+    shell history, a file, or a terminal transcript):
+
+        security add-generic-password -s ca-family-law-data -a anthropic_api_key -w
+
+    Returns None anywhere that is not macOS or where no item exists, so CI falls
+    through to ANTHROPIC_API_KEY.
+    """
+    if sys.platform != "darwin":
+        return None
+    try:
+        result = subprocess.run(
+            ["security", "find-generic-password",
+             "-s", KEYCHAIN_SERVICE, "-a", KEYCHAIN_ACCOUNT, "-w"],
+            capture_output=True, text=True, check=False,
+        )
+    except OSError:
+        return None
+    return result.stdout.strip() or None if result.returncode == 0 else None
+
+
+def build_client() -> Anthropic:
+    if os.environ.get("ANTHROPIC_API_KEY"):
+        return Anthropic()          # SDK reads the env var itself
+    if key := keychain_key():
+        return Anthropic(api_key=key)
+    raise SystemExit(
+        "No Anthropic credential found.\n"
+        "  Local:  security add-generic-password -s ca-family-law-data "
+        "-a anthropic_api_key -w\n"
+        "  CI:     set the ANTHROPIC_API_KEY repo secret"
+    )
 
 SYSTEM = """You extract structured procedural requirements from California county \
 superior court local rules.
@@ -238,7 +283,7 @@ def main(argv: list[str]) -> int:
     tax = load_topics()
     topic_slugs = [t["slug"] for t in tax["topics"]]
     json_schema = schema(topic_slugs, tax["requirement_types"])
-    client = Anthropic()
+    client = build_client()
 
     paths = sorted((DATA / "counties").glob("*.json"))
     if args.counties:
