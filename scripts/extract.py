@@ -36,7 +36,7 @@ import subprocess
 import sys
 import time
 
-from anthropic import Anthropic
+from anthropic import Anthropic, BadRequestError
 
 from common import DATA, read_json, topics as load_topics, write_json
 
@@ -75,10 +75,22 @@ def keychain_key() -> str | None:
 
 
 def build_client() -> Anthropic:
+    """Resolve credentials: env var (what CI uses), then the macOS keychain.
+
+    An identity-linked API key must additionally name the workspace the request
+    acts in, or every call fails with a 400. The SDK has no request-side
+    parameter for it — it only reads the header off responses — so it goes
+    through default_headers. Harmless to send with an ordinary key, so it is set
+    whenever ANTHROPIC_WORKSPACE_ID is present rather than being conditional on
+    the key type, which we cannot inspect.
+    """
+    workspace = os.environ.get("ANTHROPIC_WORKSPACE_ID", "").strip()
+    headers = {"anthropic-workspace-id": workspace} if workspace else None
+
     if os.environ.get("ANTHROPIC_API_KEY"):
-        return Anthropic()          # SDK reads the env var itself
+        return Anthropic(default_headers=headers)   # SDK reads the key itself
     if key := keychain_key():
-        return Anthropic(api_key=key)
+        return Anthropic(api_key=key, default_headers=headers)
     raise SystemExit(
         "No Anthropic credential found.\n"
         "  Local:  security add-generic-password -s ca-family-law-data "
@@ -309,7 +321,19 @@ def main(argv: list[str]) -> int:
 
         print(f"  {path.stem}: {len(rules)} rules")
         runner = run_sync if args.sync else run_batch
-        payloads = runner(client, rules, county["county"], json_schema)
+        try:
+            payloads = runner(client, rules, county["county"], json_schema)
+        except BadRequestError as e:
+            if "workspace" in str(e).lower():
+                raise SystemExit(
+                    "This API key is identity-linked and must name a workspace.\n"
+                    "  Find the id in the Anthropic Console under Settings -> "
+                    "Workspaces (it looks like wrkspc_...).\n"
+                    "  Local:  export ANTHROPIC_WORKSPACE_ID=wrkspc_...\n"
+                    "  CI:     gh variable set ANTHROPIC_WORKSPACE_ID   "
+                    "(an identifier, not a secret)"
+                ) from None
+            raise
 
         requirements = [] if args.force else list(county.get("requirements", []))
         citations = [] if args.force else list(county.get("citations", []))

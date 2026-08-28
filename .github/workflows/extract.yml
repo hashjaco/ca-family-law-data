@@ -30,6 +30,9 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           EXTRACT_MODEL: ${{ vars.EXTRACT_MODEL || 'claude-sonnet-5' }}
+          # Required for identity-linked API keys; an identifier, not a secret,
+          # so it lives as a repo variable. Ignored when empty.
+          ANTHROPIC_WORKSPACE_ID: ${{ vars.ANTHROPIC_WORKSPACE_ID }}
           # Passed as environment values, never interpolated into the script
           # body: `${{ inputs.x }}` inside `run:` is substituted before the shell
           # sees it, so a crafted dispatch input becomes executable text.
