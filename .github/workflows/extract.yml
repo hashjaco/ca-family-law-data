@@ -1,0 +1,47 @@
+# Structured extraction. Manual by design: it spends money and should follow a
+# reviewed crawl diff rather than fire on a schedule.
+name: extract
+on:
+  workflow_dispatch:
+    inputs:
+      counties:
+        description: "Space-separated county slugs"
+        required: true
+      force:
+        description: "Re-extract rules already done"
+        type: boolean
+        default: false
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync
+
+      - name: Extract requirements
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          EXTRACT_MODEL: ${{ vars.EXTRACT_MODEL || 'claude-sonnet-5' }}
+        run: uv run python scripts/extract.py ${{ inputs.force && '--force' || '' }} ${{ inputs.counties }}
+
+      - name: Validate
+        run: uv run python scripts/validate.py
+
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: corpus/extract-${{ github.run_id }}
+          title: "corpus: extract ${{ inputs.counties }}"
+          commit-message: "corpus: extract ${{ inputs.counties }}"
+          labels: corpus, needs-review
+          body: |
+            Model-extracted requirements for: ${{ inputs.counties }}
+
+            Every record lands as `needs_review`. Check each requirement's
+            `source_quote` against the cited rule before promoting it to
+            `verified` — `validate.py` proves the quote is verbatim, not that
+            the requirement it states is the right reading of it.

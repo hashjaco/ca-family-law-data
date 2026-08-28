@@ -1,0 +1,50 @@
+# Weekly change detection. Downloads each county's current rule documents,
+# compares hashes against the committed ledger, and opens a PR when anything
+# moved. The PR diff is the review queue — there is no admin UI by design.
+name: crawl
+on:
+  schedule:
+    - cron: "17 9 * * 0"      # Sundays, 09:17 UTC
+  workflow_dispatch:
+    inputs:
+      counties:
+        description: "Space-separated county slugs (blank = all)"
+        required: false
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync
+
+      - name: Refresh the county index
+        run: uv run python scripts/discover.py
+
+      - name: Fetch current rule documents
+        run: uv run python scripts/crawl.py ${{ inputs.counties }}
+
+      - name: Re-parse changed documents
+        run: uv run python scripts/parse.py ${{ inputs.counties }}
+
+      # Extraction is not run here: it costs money and only the rules whose text
+      # actually changed need it. The PR body says which counties moved; a
+      # maintainer triggers extract.yml for those.
+      - name: Validate
+        run: uv run python scripts/validate.py
+
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: corpus/weekly-refresh
+          title: "corpus: weekly refresh"
+          commit-message: "corpus: weekly refresh"
+          labels: corpus, needs-review
+          body: |
+            Automated weekly crawl. Review the `data/` diff before merging.
+
+            Any county whose rule text changed needs re-extraction:
+            run the `extract` workflow with those county slugs.

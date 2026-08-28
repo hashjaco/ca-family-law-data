@@ -1,0 +1,35 @@
+# Required check on every PR. The corpus is legal reference data, so a bad
+# extraction has to fail here rather than reach an application.
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --extra dev
+      - name: Unit tests
+        run: uv run pytest tests -q
+      - name: Validate corpus
+        run: uv run python scripts/validate.py
+      - name: Build artifacts
+        run: uv run python scripts/build.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: corpus
+          path: dist/
+          retention-days: 7
+
+  api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: npm ci --prefix api
+      - run: npx --prefix api tsc --noEmit --project api/tsconfig.json

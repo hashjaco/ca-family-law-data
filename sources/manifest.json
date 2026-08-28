@@ -1,0 +1,543 @@
+{
+  "index_url": "https://courts.ca.gov/forms-rules/rules-court/local-rules",
+  "discovered_at": "2026-08-28T12:11:28+00:00",
+  "counties": [
+    {
+      "id": "alameda",
+      "name": "Alameda",
+      "court_name": "Superior Court of California, County of Alameda",
+      "rules_url": "http://www.alameda.courts.ca.gov/Pages.aspx/Local-Rules(1)",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "alpine",
+      "name": "Alpine",
+      "court_name": "Superior Court of California, County of Alpine",
+      "rules_url": "https://www.alpine.courts.ca.gov/generalinfo/localrules.htm",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-01-01"
+    },
+    {
+      "id": "amador",
+      "name": "Amador",
+      "court_name": "Superior Court of California, County of Amador",
+      "rules_url": "http://www.amadorcourt.org/gi-localRules.aspx",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-01-01"
+    },
+    {
+      "id": "butte",
+      "name": "Butte",
+      "court_name": "Superior Court of California, County of Butte",
+      "rules_url": "https://www.buttecourt.ca.gov/LocalRules/CurrentRules/",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "calaveras",
+      "name": "Calaveras",
+      "court_name": "Superior Court of California, County of Calaveras",
+      "rules_url": "http://www.calaveras.courts.ca.gov/general-info/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "colusa",
+      "name": "Colusa",
+      "court_name": "Superior Court of California, County of Colusa",
+      "rules_url": "https://www.colusa.courts.ca.gov/forms-filings",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-01-01"
+    },
+    {
+      "id": "contra-costa",
+      "name": "Contra Costa",
+      "court_name": "Superior Court of California, County of Contra Costa",
+      "rules_url": "https://www.cc-courts.org/general/local-rules.aspx",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "del-norte",
+      "name": "Del Norte",
+      "court_name": "Superior Court of California, County of Del Norte",
+      "rules_url": "https://www.delnorte.courts.ca.gov/general-information/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-01-01"
+    },
+    {
+      "id": "el-dorado",
+      "name": "El Dorado",
+      "court_name": "Superior Court of California, County of El Dorado",
+      "rules_url": "https://www.eldorado.courts.ca.gov/general-information/local-rules-information-services",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-01-01"
+    },
+    {
+      "id": "fresno",
+      "name": "Fresno",
+      "court_name": "Superior Court of California, County of Fresno",
+      "rules_url": "https://www.fresno.courts.ca.gov/forms-filing/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "glenn",
+      "name": "Glenn",
+      "court_name": "Superior Court of California, County of Glenn",
+      "rules_url": "http://www.glenncourt.ca.gov/general-info/local-rules.shtml",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-01-01"
+    },
+    {
+      "id": "humboldt",
+      "name": "Humboldt",
+      "court_name": "Superior Court of California, County of Humboldt",
+      "rules_url": "https://www.humboldt.courts.ca.gov/forms-filings/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-07-01"
+    },
+    {
+      "id": "imperial",
+      "name": "Imperial",
+      "court_name": "Superior Court of California, County of Imperial",
+      "rules_url": "https://www.imperial.courts.ca.gov/general-information/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "inyo",
+      "name": "Inyo",
+      "court_name": "Superior Court of California, County of Inyo",
+      "rules_url": "https://www.inyo.courts.ca.gov/forms-filing/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-07-01"
+    },
+    {
+      "id": "kern",
+      "name": "Kern",
+      "court_name": "Superior Court of California, County of Kern",
+      "rules_url": "https://www.kern.courts.ca.gov/forms-filing/local-rules-court",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "kings",
+      "name": "Kings",
+      "court_name": "Superior Court of California, County of Kings",
+      "rules_url": "https://www.kings.courts.ca.gov/generalinfo/localrules.htm",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "lake",
+      "name": "Lake",
+      "court_name": "Superior Court of California, County of Lake",
+      "rules_url": "https://www.lake.courts.ca.gov/ff/index.htm",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-01-01"
+    },
+    {
+      "id": "lassen",
+      "name": "Lassen",
+      "court_name": "Superior Court of California, County of Lassen",
+      "rules_url": "http://www.lassencourt.ca.gov/general_info/localrules.shtml",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "los-angeles",
+      "name": "Los Angeles",
+      "court_name": "Superior Court of California, County of Los Angeles",
+      "rules_url": "http://www.lacourt.org/courtrules/ui/index.aspx?tab=2",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01",
+      "documents": [
+        {
+          "url": "https://www.lacourt.ca.gov/courtrules/CurrentCourtRulesPDF/Chap5.pdf",
+          "title": "Chapter 5 — Family Division Rules",
+          "kind": "local_rules",
+          "family_specific": true
+        },
+        {
+          "url": "https://www.lacourt.ca.gov/courtrules/CurrentRulesAppendixPDF/Chap5Appendix5A.PDF",
+          "title": "Appendix 5.A — Family Law Mediation and Non-Custody Panel",
+          "kind": "local_rules",
+          "family_specific": true
+        }
+      ],
+      "discovery_note": "SPA portal; documents set by hand (link discovery returns nothing)"
+    },
+    {
+      "id": "madera",
+      "name": "Madera",
+      "court_name": "Superior Court of California, County of Madera",
+      "rules_url": "https://www.madera.courts.ca.gov/general-information/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-01-01"
+    },
+    {
+      "id": "marin",
+      "name": "Marin",
+      "court_name": "Superior Court of California, County of Marin",
+      "rules_url": "https://www.marin.courts.ca.gov/general-information/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "mariposa",
+      "name": "Mariposa",
+      "court_name": "Superior Court of California, County of Mariposa",
+      "rules_url": "http://www.mariposacourt.org/generalinfo/localrules.shtml",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2019-01-01"
+    },
+    {
+      "id": "mendocino",
+      "name": "Mendocino",
+      "court_name": "Superior Court of California, County of Mendocino",
+      "rules_url": "https://www.mendocino.courts.ca.gov/general_info/courtrules.html",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-07-01"
+    },
+    {
+      "id": "merced",
+      "name": "Merced",
+      "court_name": "Superior Court of California, County of Merced",
+      "rules_url": "http://www.merced.courts.ca.gov/local_rules.shtml",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "modoc",
+      "name": "Modoc",
+      "court_name": "Superior Court of California, County of Modoc",
+      "rules_url": "https://www.modoc.courts.ca.gov/generalinfo/local-rules.htm",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2015-01-01"
+    },
+    {
+      "id": "mono",
+      "name": "Mono",
+      "court_name": "Superior Court of California, County of Mono",
+      "rules_url": "http://www.mono.courts.ca.gov/generalinfo/localrules.htm",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-01-01"
+    },
+    {
+      "id": "monterey",
+      "name": "Monterey",
+      "court_name": "Superior Court of California, County of Monterey",
+      "rules_url": "https://www.monterey.courts.ca.gov/general-information/local-rules-court",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "napa",
+      "name": "Napa",
+      "court_name": "Superior Court of California, County of Napa",
+      "rules_url": "http://www.napa.courts.ca.gov/general-info/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-01-01"
+    },
+    {
+      "id": "nevada",
+      "name": "Nevada",
+      "court_name": "Superior Court of California, County of Nevada",
+      "rules_url": "https://www.nevada.courts.ca.gov/forms-filing/rules-court",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-07-01"
+    },
+    {
+      "id": "orange",
+      "name": "Orange",
+      "court_name": "Superior Court of California, County of Orange",
+      "rules_url": "http://www.occourts.org/directory/local-rules/local-rules-of-court/",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-07-01"
+    },
+    {
+      "id": "placer",
+      "name": "Placer",
+      "court_name": "Superior Court of California, County of Placer",
+      "rules_url": "https://www.placer.courts.ca.gov/forms-filing/local-rules-court",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-01-01"
+    },
+    {
+      "id": "plumas",
+      "name": "Plumas",
+      "court_name": "Superior Court of California, County of Plumas",
+      "rules_url": "http://www.plumascourt.ca.gov/Local%20Rules.htm",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-07-01"
+    },
+    {
+      "id": "riverside",
+      "name": "Riverside",
+      "court_name": "Superior Court of California, County of Riverside",
+      "rules_url": "https://www.riverside.courts.ca.gov/GeneralInfo/LocalRules/local-rules.php",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "sacramento",
+      "name": "Sacramento",
+      "court_name": "Superior Court of California, County of Sacramento",
+      "rules_url": "https://www.saccourt.ca.gov/local-rules/local-rules.aspx",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "san-benito",
+      "name": "San Benito",
+      "court_name": "Superior Court of California, County of San Benito",
+      "rules_url": "https://www.sanbenito.courts.ca.gov/general-information/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "san-bernardino",
+      "name": "San Bernardino",
+      "court_name": "Superior Court of California, County of San Bernardino",
+      "rules_url": "https://sanbernardino.courts.ca.gov/forms-filing/local-rules-court",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "san-diego",
+      "name": "San Diego",
+      "court_name": "Superior Court of California, County of San Diego",
+      "rules_url": "http://www.sdcourt.ca.gov/pls/portal/url/page/sdcourt/generalinformation/localrulesofcourt",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-01-01"
+    },
+    {
+      "id": "san-francisco",
+      "name": "San Francisco",
+      "court_name": "Superior Court of California, County of San Francisco",
+      "rules_url": "https://sf.courts.ca.gov/general-information/local-rules-court",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "san-joaquin",
+      "name": "San Joaquin",
+      "court_name": "Superior Court of California, County of San Joaquin",
+      "rules_url": "https://www.sjcourts.org/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "san-luis-obispo",
+      "name": "San Luis Obispo",
+      "court_name": "Superior Court of California, County of San Luis Obispo",
+      "rules_url": "http://www.slo.courts.ca.gov/gi/rules.htm",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "san-mateo",
+      "name": "San Mateo",
+      "court_name": "Superior Court of California, County of San Mateo",
+      "rules_url": "https://www.sanmateo.courts.ca.gov/general-information/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "santa-barbara",
+      "name": "Santa Barbara",
+      "court_name": "Superior Court of California, County of Santa Barbara",
+      "rules_url": "https://www.santabarbara.courts.ca.gov/forms-filing/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-07-01"
+    },
+    {
+      "id": "santa-clara",
+      "name": "Santa Clara",
+      "court_name": "Superior Court of California, County of Santa Clara",
+      "rules_url": "http://www.scscourt.org/general_info/rules/rules_home.shtml",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "santa-cruz",
+      "name": "Santa Cruz",
+      "court_name": "Superior Court of California, County of Santa Cruz",
+      "rules_url": "http://www.santacruzcourt.org/forms-filing/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "shasta",
+      "name": "Shasta",
+      "court_name": "Superior Court of California, County of Shasta",
+      "rules_url": "/system/files/rules-court/shasta_roc.pdf",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "sierra",
+      "name": "Sierra",
+      "court_name": "Superior Court of California, County of Sierra",
+      "rules_url": "/system/files/rules-court/sierra_roc.pdf",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-07-01"
+    },
+    {
+      "id": "siskiyou",
+      "name": "Siskiyou",
+      "court_name": "Superior Court of California, County of Siskiyou",
+      "rules_url": "http://www.siskiyou.courts.ca.gov/generalinfo/localrules.htm",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-07-01"
+    },
+    {
+      "id": "solano",
+      "name": "Solano",
+      "court_name": "Superior Court of California, County of Solano",
+      "rules_url": "https://solano.courts.ca.gov/administration/local-rules-of-court/",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-07-01"
+    },
+    {
+      "id": "sonoma",
+      "name": "Sonoma",
+      "court_name": "Superior Court of California, County of Sonoma",
+      "rules_url": "http://sonoma.courts.ca.gov/info/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "stanislaus",
+      "name": "Stanislaus",
+      "court_name": "Superior Court of California, County of Stanislaus",
+      "rules_url": "http://www.stanct.org/local-rules-fee-schedule",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "sutter",
+      "name": "Sutter",
+      "court_name": "Superior Court of California, County of Sutter",
+      "rules_url": "http://www.suttercourts.com/general-info/local-rules-of-court",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-01-01"
+    },
+    {
+      "id": "tehama",
+      "name": "Tehama",
+      "court_name": "Superior Court of California, County of Tehama",
+      "rules_url": "/system/files/rules-court/tehama_roc.pdf",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-01-01"
+    },
+    {
+      "id": "trinity",
+      "name": "Trinity",
+      "court_name": "Superior Court of California, County of Trinity",
+      "rules_url": "https://www.trinity.courts.ca.gov/general-information/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2025-01-01"
+    },
+    {
+      "id": "tulare",
+      "name": "Tulare",
+      "court_name": "Superior Court of California, County of Tulare",
+      "rules_url": "https://www.tulare.courts.ca.gov/forms-filing",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "tuolumne",
+      "name": "Tuolumne",
+      "court_name": "Superior Court of California, County of Tuolumne",
+      "rules_url": "https://www.tuolumne.courts.ca.gov/forms-filing/local-rules",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2023-01-01"
+    },
+    {
+      "id": "ventura",
+      "name": "Ventura",
+      "court_name": "Superior Court of California, County of Ventura",
+      "rules_url": "http://www.ventura.courts.ca.gov/local-rules.html",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    },
+    {
+      "id": "yolo",
+      "name": "Yolo",
+      "court_name": "Superior Court of California, County of Yolo",
+      "rules_url": "https://www.yolo.courts.ca.gov/general-information/local-rules-news-notices-orders-and-policies",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2023-01-01"
+    },
+    {
+      "id": "yuba",
+      "name": "Yuba",
+      "court_name": "Superior Court of California, County of Yuba",
+      "rules_url": "https://www.yuba.courts.ca.gov/general-information/local-rules-court",
+      "forms_url": null,
+      "fcs_url": null,
+      "local_rules_effective_from": "2026-07-01"
+    }
+  ]
+}

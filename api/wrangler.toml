@@ -1,0 +1,13 @@
+name = "ca-family-law-api"
+main = "src/index.ts"
+compatibility_date = "2026-08-01"
+
+# Free plan: 100k requests/day, 10 ms CPU per request. D1 wait is not CPU time,
+# but serialising a large result set is — every query here is LIMITed.
+[[d1_databases]]
+binding = "DB"
+database_name = "ca-family-law"
+database_id = "local-dev-placeholder"   # wrangler d1 create ca-family-law
+
+[observability]
+enabled = true
