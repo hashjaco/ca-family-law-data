@@ -7,6 +7,9 @@ on:
       counties:
         description: "Space-separated county slugs"
         required: true
+      limit:
+        description: "Only the first N rules per county (smoke test)"
+        required: false
       force:
         description: "Re-extract rules already done"
         type: boolean
@@ -27,7 +30,20 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           EXTRACT_MODEL: ${{ vars.EXTRACT_MODEL || 'claude-sonnet-5' }}
-        run: uv run python scripts/extract.py ${{ inputs.force && '--force' || '' }} ${{ inputs.counties }}
+          # Passed as environment values, never interpolated into the script
+          # body: `${{ inputs.x }}` inside `run:` is substituted before the shell
+          # sees it, so a crafted dispatch input becomes executable text.
+          COUNTIES: ${{ inputs.counties }}
+          LIMIT: ${{ inputs.limit }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          set -euo pipefail
+          args=()
+          [ "$FORCE" = "true" ] && args+=(--force)
+          [ -n "$LIMIT" ] && args+=(--limit "$LIMIT")
+          # $COUNTIES is intentionally unquoted to split the slug list into
+          # arguments; shell metacharacters in it stay inert as argument text.
+          uv run python scripts/extract.py "${args[@]}" $COUNTIES
 
       - name: Validate
         run: uv run python scripts/validate.py
@@ -35,11 +51,11 @@ jobs:
       - uses: peter-evans/create-pull-request@v7
         with:
           branch: corpus/extract-${{ github.run_id }}
-          title: "corpus: extract ${{ inputs.counties }}"
-          commit-message: "corpus: extract ${{ inputs.counties }}"
+          title: "corpus: extract requirements"
+          commit-message: "corpus: extract requirements"
           labels: corpus, needs-review
           body: |
-            Model-extracted requirements for: ${{ inputs.counties }}
+            Model-extracted requirements for: `${{ inputs.counties }}`
 
             Every record lands as `needs_review`. Check each requirement's
             `source_quote` against the cited rule before promoting it to

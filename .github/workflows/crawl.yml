@@ -26,10 +26,16 @@ jobs:
         run: uv run python scripts/discover.py
 
       - name: Fetch current rule documents
-        run: uv run python scripts/crawl.py ${{ inputs.counties }}
+        env:
+          # Environment values, not `${{ }}` substitution into the script body —
+          # see extract.yml for why.
+          COUNTIES: ${{ inputs.counties }}
+        run: uv run python scripts/crawl.py $COUNTIES
 
       - name: Re-parse changed documents
-        run: uv run python scripts/parse.py ${{ inputs.counties }}
+        env:
+          COUNTIES: ${{ inputs.counties }}
+        run: uv run python scripts/parse.py $COUNTIES
 
       # Extraction is not run here: it costs money and only the rules whose text
       # actually changed need it. The PR body says which counties moved; a
